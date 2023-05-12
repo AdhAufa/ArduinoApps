@@ -27,6 +27,6 @@ class APIClient {
 
 class Constants{
     companion object{
-        const val API_ENDPOINT = "ini url diganti kyk url di postman "
+        const val API_ENDPOINT = "http://127.0.0.1:5000"
     }
 }

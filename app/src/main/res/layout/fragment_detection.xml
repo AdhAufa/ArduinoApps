@@ -250,7 +250,31 @@
 
     </androidx.cardview.widget.CardView>
 
+    <TextView
+        android:id="@+id/TVResultHypoxia"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/result"
+        android:visibility="gone"
+        android:textSize="@dimen/heading2"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/card3"
+        android:layout_marginTop="22dp"
+        />
 
+    <TextView
+        android:id="@+id/TVResultCategory"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/category"
+        android:textSize="@dimen/heading2"
+        android:visibility="gone"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/TVResultHypoxia"
+        android:layout_marginTop="22dp"
+        />
     <com.google.android.material.button.MaterialButton
         android:id="@+id/BtnDetect"
         android:layout_width="match_parent"
