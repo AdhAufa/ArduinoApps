@@ -1,14 +1,19 @@
 package com.example.arduinoapps.fragment
 
 import android.os.Bundle
+import android.provider.Telephony.Mms.Rate
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import com.example.arduinoapps.R
+import com.example.arduinoapps.contracts.DetectionFragmentContract
 import com.example.arduinoapps.databinding.FragmentDetectionBinding
 import com.example.arduinoapps.databinding.FragmentHomeBinding
 import com.example.arduinoapps.model.History
+import com.example.arduinoapps.model.PredictResponse
+import com.example.arduinoapps.presenters.FragmentDetectionPresenter
 import com.example.arduinoapps.room.MyDatabase
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
@@ -18,11 +23,17 @@ import com.google.firebase.database.ktx.getValue
 import io.reactivex.Observable
 import io.reactivex.disposables.CompositeDisposable
 
-class DetectionFragment : Fragment() {
+class DetectionFragment : Fragment(), DetectionFragmentContract.DetectionFragmentView {
 
     lateinit var history : History
     //instance db
     lateinit var myDb : MyDatabase
+
+    private var heartmeter = 0.0
+    private var oxymeter = 0.0
+
+    //presenter
+    private var presenter : DetectionFragmentContract.DetectionFragmentPresenter? = null
 
     //inisialisasi variabel untuk menampung id view
     private var _binding : FragmentDetectionBinding? = null
@@ -34,7 +45,9 @@ class DetectionFragment : Fragment() {
         // Inflate the layout for this fragment
         _binding = FragmentDetectionBinding.inflate(inflater, container, false)
         firebaseConection()
+        presenter = FragmentDetectionPresenter(this)
 //        myDb = MyDatabase.getInstance(requireContext())!!
+        buttonDetectClicked()
         return binding.root
     }
 
@@ -52,6 +65,9 @@ class DetectionFragment : Fragment() {
 
                 val heartRateStatus = snapshot.child("Heartrate").getValue().toString().toInt()
                 val spoStatus = snapshot.child("Oxymeter").getValue().toString().toInt()
+
+                oxymeter = snapshot.child("Oxymeter").getValue().toString().toDouble()
+                heartmeter = snapshot.child("Heartrate").getValue().toString().toDouble()
 
                 //menampilkan data ke view
                 binding.apply {
@@ -83,6 +99,39 @@ class DetectionFragment : Fragment() {
 
     private fun saveHistory(){
         
+    }
+
+    private fun predict(){
+        presenter?.detect(oxymeter, heartmeter)
+    }
+
+    private fun buttonDetectClicked(){
+        binding.BtnDetect.setOnClickListener(){
+            // ini bisa sekalian ngepost + save ke history
+            predict()
+            println("Oxymeter : ${oxymeter} & HeartRate : ${heartmeter}")
+        }
+    }
+
+    override fun successDetect(data: PredictResponse) {
+        binding.TVResultHypoxia.apply {
+            visibility = View.VISIBLE
+            setText(data.hypoxia.toString())
+        }
+        binding.TVResultCategory.apply {
+            visibility = View.VISIBLE
+            setText(data.category)
+        }
+
+    }
+
+    override fun showToast(message: String) {
+        Toast.makeText(activity, message, Toast.LENGTH_SHORT).show()
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        presenter?.onDestroy()
     }
 
 }
