@@ -27,6 +27,6 @@ class APIClient {
 
 class Constants{
     companion object{
-        const val API_ENDPOINT = "http://127.0.0.1:5000"
+        const val API_ENDPOINT = "http://192.168.18.117:5000"
     }
 }

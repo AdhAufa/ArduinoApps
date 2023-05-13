@@ -3,6 +3,7 @@ package com.example.arduinoapps.presenters
 import com.example.arduinoapps.contracts.DetectionFragmentContract
 import com.example.arduinoapps.model.PredictResponse
 import com.example.arduinoapps.webservices.APIClient
+import okhttp3.RequestBody
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -12,8 +13,8 @@ class FragmentDetectionPresenter(v : DetectionFragmentContract.DetectionFragment
     private var view : DetectionFragmentContract.DetectionFragmentView? = v
     private var apiService = APIClient.APIService()
 
-    override fun detect(oxygen: Double, heart: Double) {
-        val request = apiService.predict(oxygen, heart)
+    override fun detect(requestBody: RequestBody) {
+        val request = apiService.predict(requestBody)
         request.enqueue(object : Callback<PredictResponse>{
             override fun onResponse(
                 call: Call<PredictResponse>,

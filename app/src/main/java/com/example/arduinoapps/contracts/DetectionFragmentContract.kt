@@ -2,6 +2,7 @@ package com.example.arduinoapps.contracts
 
 import android.content.Context
 import com.example.arduinoapps.model.PredictResponse
+import okhttp3.RequestBody
 
 interface DetectionFragmentContract {
     interface DetectionFragmentView{
@@ -10,7 +11,7 @@ interface DetectionFragmentContract {
     }
 
     interface DetectionFragmentPresenter {
-        fun detect(oxygen : Double,heart : Double)
+        fun detect(requestBody : RequestBody)
         fun onDestroy()
     }
 }

@@ -22,6 +22,9 @@ import com.google.firebase.database.ValueEventListener
 import com.google.firebase.database.ktx.getValue
 import io.reactivex.Observable
 import io.reactivex.disposables.CompositeDisposable
+import okhttp3.MediaType.Companion.toMediaTypeOrNull
+import okhttp3.RequestBody.Companion.toRequestBody
+import org.json.JSONObject
 
 class DetectionFragment : Fragment(), DetectionFragmentContract.DetectionFragmentView {
 
@@ -102,7 +105,14 @@ class DetectionFragment : Fragment(), DetectionFragmentContract.DetectionFragmen
     }
 
     private fun predict(){
-        presenter?.detect(oxymeter, heartmeter)
+        val jsonObject = JSONObject()
+        jsonObject.put("oxygen", oxymeter)
+        jsonObject.put("heart", heartmeter)
+        // Convert JSONObject to String
+        val jsonObjectString = jsonObject.toString()
+        // Create RequestBody ( We're not using any converter, like GsonConverter, MoshiConverter e.t.c, that's why we use RequestBody )
+        val requestBody = jsonObjectString.toRequestBody("application/json".toMediaTypeOrNull())
+        presenter?.detect(requestBody)
     }
 
     private fun buttonDetectClicked(){
@@ -115,11 +125,9 @@ class DetectionFragment : Fragment(), DetectionFragmentContract.DetectionFragmen
 
     override fun successDetect(data: PredictResponse) {
         binding.TVResultHypoxia.apply {
-            visibility = View.VISIBLE
             setText(data.hypoxia.toString())
         }
         binding.TVResultCategory.apply {
-            visibility = View.VISIBLE
             setText(data.category)
         }
 
