@@ -250,29 +250,73 @@
 
     </androidx.cardview.widget.CardView>
 
-    <TextView
-        android:id="@+id/TVResultHypoxia"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/result"
-        android:textSize="@dimen/heading2"
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cardResult"
+        android:layout_width="match_parent"
+        android:layout_height="150dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        app:cardElevation="20dp"
+        android:layout_marginTop="16dp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/card3"
-        android:layout_marginTop="22dp"
-        />
+        app:layout_constraintTop_toBottomOf="@id/card3">
 
-    <TextView
-        android:id="@+id/TVResultCategory"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/category"
-        android:textSize="@dimen/heading2"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/TVResultHypoxia"
-        android:layout_marginTop="22dp"
-        />
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/TVHypoxia"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/results"
+                android:textSize="@dimen/heading2"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                android:layout_marginTop="22dp"
+                android:layout_marginStart="8dp"
+                />
+
+            <TextView
+                android:id="@+id/TVCategory"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/categorys"
+                android:textSize="@dimen/heading2"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/TVResultHypoxia"
+                android:layout_marginTop="22dp"
+                android:layout_marginStart="8dp"
+                />
+
+            <TextView
+                android:id="@+id/TVResultHypoxia"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/result"
+                android:textSize="@dimen/heading2"
+                app:layout_constraintStart_toEndOf="@+id/TVHypoxia"
+                app:layout_constraintTop_toTopOf="parent"
+                android:layout_marginTop="22dp"
+                android:layout_marginStart="8dp"
+                />
+
+            <TextView
+                android:id="@+id/TVResultCategory"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/category"
+                android:textSize="@dimen/heading2"
+                app:layout_constraintStart_toEndOf="@+id/TVCategory"
+                app:layout_constraintTop_toBottomOf="@+id/TVResultHypoxia"
+                android:layout_marginTop="22dp"
+                android:layout_marginStart="8dp"
+                />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.cardview.widget.CardView>
+
+
     <com.google.android.material.button.MaterialButton
         android:id="@+id/BtnDetect"
         android:layout_width="match_parent"

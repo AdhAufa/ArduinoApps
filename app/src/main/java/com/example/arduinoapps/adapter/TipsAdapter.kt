@@ -24,7 +24,7 @@ class TipsAdapter(private val listTips : ArrayList<Tips>,
                 .into(holder.binding.Thumbnail)
 
             tvHeadlines.text = listTips[position].title
-            tvDescription.text = listTips[position].content
+            tvDescription.text = listTips[position].author
         }
 
         holder.itemView.setOnClickListener {

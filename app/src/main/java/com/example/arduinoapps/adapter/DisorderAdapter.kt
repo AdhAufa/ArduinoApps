@@ -33,7 +33,7 @@ class DisorderAdapter(private val listDisorded : ArrayList<Disorder>,
                     .into(holder.binding.Thumbnail)
 
                 tvHeadlines.text = listDisorded[position].title
-                tvDescription.text = listDisorded[position].content
+                tvDescription.text = listDisorded[position].author
             }
 
             holder.itemView.setOnClickListener {

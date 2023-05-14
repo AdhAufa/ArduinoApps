@@ -31,4 +31,6 @@
     <string name="login">Login</string>
     <string name="createAccount">Register</string>
     <string name="category">Category</string>
+    <string name="results">Result :</string>
+    <string name="categorys">Category :</string>
 </resources>
