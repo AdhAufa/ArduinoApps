@@ -33,4 +33,13 @@
     <string name="category">Category</string>
     <string name="results">Result :</string>
     <string name="categorys">Category :</string>
+    <string name="Name">Name</string>
+    <string name="Gender">Gender</string>
+    <string name="NoHp">No Hp</string>
+    <string name="Register">Register</string>
+    <string name="Email">Email</string>
+    <string-array name="gender">
+        <item>male</item>
+        <item>female</item>
+    </string-array>
 </resources>

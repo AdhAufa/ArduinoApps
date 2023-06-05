@@ -62,12 +62,7 @@ dependencies {
     implementation 'de.hdodenhof:circleimageview:3.1.0'
 
     //Room Database
-    kapt "android.arch.persistence.room:compiler:1.0.0"
-    implementation 'android.arch.persistence.room:runtime:1.0.0'
     implementation 'io.reactivex.rxjava2:rxandroid:2.1.1'
-    implementation "androidx.room:room-runtime:2.5.0"
-    annotationProcessor "androidx.room:room-compiler:2.5.0"
-    kapt "androidx.room:room-compiler:2.5.0"
 
     //web request
     implementation "com.squareup.retrofit2:retrofit:2.9.0"

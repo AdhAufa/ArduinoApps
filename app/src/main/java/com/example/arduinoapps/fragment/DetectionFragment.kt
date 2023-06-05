@@ -1,27 +1,20 @@
 package com.example.arduinoapps.fragment
 
 import android.os.Bundle
-import android.provider.Telephony.Mms.Rate
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
-import com.example.arduinoapps.R
 import com.example.arduinoapps.contracts.DetectionFragmentContract
 import com.example.arduinoapps.databinding.FragmentDetectionBinding
-import com.example.arduinoapps.databinding.FragmentHomeBinding
 import com.example.arduinoapps.model.History
 import com.example.arduinoapps.model.PredictResponse
 import com.example.arduinoapps.presenters.FragmentDetectionPresenter
-import com.example.arduinoapps.room.MyDatabase
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
-import com.google.firebase.database.ktx.getValue
-import io.reactivex.Observable
-import io.reactivex.disposables.CompositeDisposable
 import okhttp3.MediaType.Companion.toMediaTypeOrNull
 import okhttp3.RequestBody.Companion.toRequestBody
 import org.json.JSONObject
@@ -29,8 +22,6 @@ import org.json.JSONObject
 class DetectionFragment : Fragment(), DetectionFragmentContract.DetectionFragmentView {
 
     lateinit var history : History
-    //instance db
-    lateinit var myDb : MyDatabase
 
     private var heartmeter = 0.0
     private var oxymeter = 0.0
