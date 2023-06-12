@@ -12,6 +12,7 @@ interface DetectionFragmentContract {
 
     interface DetectionFragmentPresenter {
         fun detect(requestBody : RequestBody)
+        fun saveHistory(token : String, requestBody : RequestBody)
         fun onDestroy()
     }
 }

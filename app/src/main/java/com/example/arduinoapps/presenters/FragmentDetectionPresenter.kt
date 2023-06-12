@@ -1,7 +1,9 @@
 package com.example.arduinoapps.presenters
 
 import com.example.arduinoapps.contracts.DetectionFragmentContract
+import com.example.arduinoapps.model.History
 import com.example.arduinoapps.model.PredictResponse
+import com.example.arduinoapps.model.WrappedResponse
 import com.example.arduinoapps.webservices.APIClient
 import okhttp3.RequestBody
 import retrofit2.Call
@@ -34,6 +36,30 @@ class FragmentDetectionPresenter(v : DetectionFragmentContract.DetectionFragment
             }
 
             override fun onFailure(call: Call<PredictResponse>, t: Throwable) {
+                view?.showToast("Cant connect to server")
+                println("Error message ${t.message}")
+            }
+        })
+    }
+
+    override fun saveHistory(token: String, requestBody: RequestBody) {
+        val request = apiService.addHistory("Bearer $token", requestBody)
+        request.enqueue(object : Callback<WrappedResponse<History>>{
+            override fun onResponse(
+                call: Call<WrappedResponse<History>>,
+                response: Response<WrappedResponse<History>>
+            ) {
+                if (response.isSuccessful){
+                    val body = response.body()
+                    if (body != null){
+                        view?.showToast("data berhasil disimpan")
+                    }
+                }else{
+                    view?.showToast("Check your connection")
+                }
+            }
+
+            override fun onFailure(call: Call<WrappedResponse<History>>, t: Throwable) {
                 view?.showToast("Cant connect to server")
                 println("Error message ${t.message}")
             }

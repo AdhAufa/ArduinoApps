@@ -10,6 +10,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.arduinoapps.activity.DetailDisorderActivity
 import com.example.arduinoapps.activity.DetailTipsActivity
+import com.example.arduinoapps.activity.ProfileActivity
 import com.example.arduinoapps.adapter.DisorderAdapter
 import com.example.arduinoapps.adapter.TipsAdapter
 import com.example.arduinoapps.databinding.FragmentHomeBinding
@@ -35,7 +36,14 @@ class HomeFragment : Fragment() {
         showTipsToRv()
         showDisorderToRv()
         hideProgressBar()
+        goToProfile()
         return binding.root
+    }
+
+    private fun goToProfile(){
+        binding.TvName.setOnClickListener {
+            startActivity(Intent(activity, ProfileActivity::class.java))
+        }
     }
 
     fun showTipsToRv(){

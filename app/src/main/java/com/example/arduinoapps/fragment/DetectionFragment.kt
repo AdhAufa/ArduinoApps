@@ -11,6 +11,7 @@ import com.example.arduinoapps.databinding.FragmentDetectionBinding
 import com.example.arduinoapps.model.History
 import com.example.arduinoapps.model.PredictResponse
 import com.example.arduinoapps.presenters.FragmentDetectionPresenter
+import com.example.arduinoapps.webservices.Constants
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
@@ -22,12 +23,22 @@ import org.json.JSONObject
 class DetectionFragment : Fragment(), DetectionFragmentContract.DetectionFragmentView {
 
     lateinit var history : History
-
     private var heartmeter = 0.0
     private var oxymeter = 0.0
 
+
     //presenter
     private var presenter : DetectionFragmentContract.DetectionFragmentPresenter? = null
+
+    //saveHistory
+//    oxy : String, oxyStatus : String, heart : String, heartStatus : String, result : String, category: String
+    private var oxy : String = ""
+    private var oxyStatus : String = ""
+    private var heart : String = ""
+    private var heartStatus : String = ""
+    private var result : String = ""
+    private var category : String = ""
+
 
     //inisialisasi variabel untuk menampung id view
     private var _binding : FragmentDetectionBinding? = null
@@ -40,8 +51,8 @@ class DetectionFragment : Fragment(), DetectionFragmentContract.DetectionFragmen
         _binding = FragmentDetectionBinding.inflate(inflater, container, false)
         firebaseConection()
         presenter = FragmentDetectionPresenter(this)
-//        myDb = MyDatabase.getInstance(requireContext())!!
         buttonDetectClicked()
+        saveButtonClicked()
         return binding.root
     }
 
@@ -62,6 +73,12 @@ class DetectionFragment : Fragment(), DetectionFragmentContract.DetectionFragmen
 
                 oxymeter = snapshot.child("Oxymeter").getValue().toString().toDouble()
                 heartmeter = snapshot.child("Heartrate").getValue().toString().toDouble()
+
+                //isi ulang value
+                oxy = spo
+                oxyStatus = setStatus(heartRateStatus)
+                heart = heartRate
+                heartStatus = setStatus(spoStatus)
 
                 //menampilkan data ke view
                 binding.apply {
@@ -91,8 +108,28 @@ class DetectionFragment : Fragment(), DetectionFragmentContract.DetectionFragmen
         return status
     }
 
+    private fun saveButtonClicked(){
+        binding.BtnSave.setOnClickListener {
+            saveHistory()
+            binding.apply {
+                BtnSave.visibility = View.GONE
+                BtnDetect.visibility = View.VISIBLE
+            }
+        }
+    }
+
     private fun saveHistory(){
-        
+        val jsonObject = JSONObject()
+        jsonObject.put("heart_rate", heart)
+        jsonObject.put("status_heart_rate", heartStatus)
+        jsonObject.put("oxy_rate", oxy)
+        jsonObject.put("status_oxy_rate", oxyStatus)
+        jsonObject.put("result", result)
+        jsonObject.put("category", category)
+        val jsonObjectString = jsonObject.toString()
+        val token = Constants.getToken(requireActivity())
+        val requestBody = jsonObjectString.toRequestBody("application/json".toMediaTypeOrNull())
+        presenter?.saveHistory(token, requestBody)
     }
 
     private fun predict(){
@@ -108,20 +145,19 @@ class DetectionFragment : Fragment(), DetectionFragmentContract.DetectionFragmen
 
     private fun buttonDetectClicked(){
         binding.BtnDetect.setOnClickListener(){
-            // ini bisa sekalian ngepost + save ke history
             predict()
-            println("Oxymeter : ${oxymeter} & HeartRate : ${heartmeter}")
         }
     }
 
     override fun successDetect(data: PredictResponse) {
-        binding.TVResultHypoxia.apply {
-            setText(data.hypoxia.toString())
+        result = data.hypoxia.toString()
+        category = data.category.toString()
+        binding.apply {
+            TVResultHypoxia.text = data.hypoxia.toString()
+            TVResultCategory.text = data.category
+            BtnSave.visibility = View.VISIBLE
+            BtnDetect.visibility = View.GONE
         }
-        binding.TVResultCategory.apply {
-            setText(data.category)
-        }
-
     }
 
     override fun showToast(message: String) {

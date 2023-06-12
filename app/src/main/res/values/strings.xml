@@ -15,8 +15,8 @@
     <string name="Persen">%</string>
     <string name="temperature">Temperature</string>
     <string name="spo">SpO2</string>
-    <string name="greet">Hi Wellcome back</string>
-    <string name="name">Adhar Aufa</string>
+    <string name="greet">Hi, Wellcome back</string>
+    <string name="name">Users </string>
     <string name="title_logo">Oxyrate</string>>
     <string name="tips">Tips</string>
     <string name="disorder">Disorder</string>
@@ -38,6 +38,10 @@
     <string name="NoHp">No Hp</string>
     <string name="Register">Register</string>
     <string name="Email">Email</string>
+    <string name="date">02-10-2023</string>
+    <string name="empty">Belum ada history</string>
+    <string name="logout">Logout</string>
+    <string name="save">Save to History</string>
     <string-array name="gender">
         <item>male</item>
         <item>female</item>

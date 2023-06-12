@@ -38,7 +38,6 @@ interface APIService {
     fun getHistory(
         @Header("Authorization") api_token: String
     ):Call<WrappedListResponse<History>>
-
     @POST("history")
     fun addHistory(
         @Header("Authorization") api_token: String,

@@ -8,6 +8,19 @@
 
     tools:context=".fragment.DetectionFragment">
 
+    <TextView
+        android:id="@+id/Title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="24dp"
+        android:text="@string/detect"
+        android:textColor="@color/black"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
 <!--    <LinearLayout-->
 <!--        android:id="@+id/wrapper"-->
 <!--        android:layout_width="match_parent"-->
@@ -91,10 +104,10 @@
         android:layout_height="150dp"
         android:layout_marginStart="16dp"
         android:layout_marginEnd="16dp"
-        android:layout_marginTop="50dp"
+        android:layout_marginTop="16dp"
         app:cardElevation="20dp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toBottomOf="@id/Title">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
@@ -295,6 +308,7 @@
                 android:layout_height="wrap_content"
                 android:text="@string/result"
                 android:textSize="@dimen/heading2"
+                android:maxLength="6"
                 app:layout_constraintStart_toEndOf="@+id/TVHypoxia"
                 app:layout_constraintTop_toTopOf="parent"
                 android:layout_marginTop="22dp"
@@ -316,6 +330,19 @@
 
     </androidx.cardview.widget.CardView>
 
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/BtnSave"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:text="@string/save"
+        android:textAllCaps="false"
+        android:visibility="gone"
+        android:layout_marginBottom="32dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/BtnDetect"
