@@ -68,8 +68,8 @@ class DetectionFragment : Fragment(), DetectionFragmentContract.DetectionFragmen
                 val heartRate : String = snapshot.child("Heartrate").getValue().toString()
                 val spo : String = snapshot.child("Oxymeter").getValue().toString()
 
-                val heartRateStatus = snapshot.child("Heartrate").getValue().toString().toInt()
-                val spoStatus = snapshot.child("Oxymeter").getValue().toString().toInt()
+                val heartRateStatus = snapshot.child("Heartrate").getValue().toString().toDouble()
+                val spoStatus = snapshot.child("Oxymeter").getValue().toString().toDouble()
 
                 oxymeter = snapshot.child("Oxymeter").getValue().toString().toDouble()
                 heartmeter = snapshot.child("Heartrate").getValue().toString().toDouble()
@@ -96,7 +96,7 @@ class DetectionFragment : Fragment(), DetectionFragmentContract.DetectionFragmen
         })
     }
 
-    private fun setStatus(value : Int) : String{
+    private fun setStatus(value : Double) : String{
         var status = "normal"
         if(value >= 100){
             status = "high"

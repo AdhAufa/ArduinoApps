@@ -16,6 +16,7 @@ import com.example.arduinoapps.adapter.TipsAdapter
 import com.example.arduinoapps.databinding.FragmentHomeBinding
 import com.example.arduinoapps.model.Disorder
 import com.example.arduinoapps.model.Tips
+import com.example.arduinoapps.webservices.Constants
 import com.google.firebase.firestore.DocumentChange
 import com.google.firebase.firestore.FirebaseFirestore
 import java.io.Serializable
@@ -37,7 +38,13 @@ class HomeFragment : Fragment() {
         showDisorderToRv()
         hideProgressBar()
         goToProfile()
+        setName()
         return binding.root
+    }
+
+    private fun setName(){
+        val name = Constants.getName(requireActivity())
+        binding.TvName.text = name
     }
 
     private fun goToProfile(){

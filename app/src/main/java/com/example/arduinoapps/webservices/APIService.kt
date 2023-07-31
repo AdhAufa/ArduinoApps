@@ -50,4 +50,9 @@ interface APIService {
         @Header("Authorization") api_token: String
     ):Call<WrappedResponse<History>>
 
+    @GET("user")
+    fun getUser(
+        @Header("Authorization") api_token: String
+    ):Call<WrappedResponse<User>>
+
 }

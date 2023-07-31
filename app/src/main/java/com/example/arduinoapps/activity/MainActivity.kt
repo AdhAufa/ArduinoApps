@@ -8,6 +8,7 @@ import com.example.arduinoapps.databinding.ActivityMainBinding
 import com.example.arduinoapps.fragment.DetectionFragment
 import com.example.arduinoapps.fragment.HistoryFragment
 import com.example.arduinoapps.fragment.HomeFragment
+import com.example.arduinoapps.fragment.ProfileFragment
 
 class MainActivity : AppCompatActivity() {
     private lateinit var binding : ActivityMainBinding
@@ -24,7 +25,7 @@ class MainActivity : AppCompatActivity() {
             when(it.itemId) {
                 R.id.icHome -> setCurrentFragment(HomeFragment())
                 R.id.icDetect -> setCurrentFragment(DetectionFragment())
-                R.id.icHistory ->setCurrentFragment(HistoryFragment())
+                R.id.icProfile -> setCurrentFragment(ProfileFragment())
             }
             true
         }

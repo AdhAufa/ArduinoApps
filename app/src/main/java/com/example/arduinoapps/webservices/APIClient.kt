@@ -29,8 +29,8 @@ class APIClient {
 
 class Constants{
     companion object{
-        const val API_ENDPOINT = "http://192.168.18.117:5000/"
-//        const val API_ENDPOINT = "https://fuzzyflask-production.up.railway.app/"
+//        const val API_ENDPOINT = "https://hypoxiabackend-production.up.railway.app/"
+        const val API_ENDPOINT = "http://103.134.154.34/"
         fun getToken(context: Context): String {
             val pref = context.getSharedPreferences("TOKEN", MODE_PRIVATE)
             val token = pref?.getString("TOKEN", "UNDEFINED")
@@ -45,6 +45,24 @@ class Constants{
         }
         fun clearToken(context: Context) {
             val pref = context.getSharedPreferences("TOKEN", MODE_PRIVATE)
+            pref.edit().clear().apply()
+        }
+        fun getName(context: Context): String {
+            val pref = context.getSharedPreferences("NAME", MODE_PRIVATE)
+            val token = pref?.getString("NAME", "JhonDoe")
+            return token!!
+        }
+
+        fun setName(context: Context, name: String) {
+            val pref = context.getSharedPreferences("NAME", MODE_PRIVATE)
+            pref.edit().apply {
+                putString("NAME", name)
+                apply()
+            }
+        }
+
+        fun clearName(context: Context) {
+            val pref = context.getSharedPreferences("NAME", MODE_PRIVATE)
             pref.edit().clear().apply()
         }
     }

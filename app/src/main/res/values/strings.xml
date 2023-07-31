@@ -19,7 +19,7 @@
     <string name="name">Users </string>
     <string name="title_logo">Oxyrate</string>>
     <string name="tips">Tips</string>
-    <string name="disorder">Disorder</string>
+    <string name="disorder">Disease</string>
     <string name="Headlines">Tips menghindari kelelahan saat olahraga</string>
     <string name="TipsDesc">If your goal is fat loss, incorporate four to six, 30 to 60-minute cardio sessions per week into your training schedule.</string>
     <string name="hipoxia">Hipoxia</string>
@@ -42,6 +42,11 @@
     <string name="empty">Belum ada history</string>
     <string name="logout">Logout</string>
     <string name="save">Save to History</string>
+    <string name="profile">Profile</string>
+    <string name="Detail">Detail</string>
+    <string name="PasswordHashed">*************</string>
+    <string name="EmailAddress">jhondhoe@gmail.com</string>
+    <string name="historyAndGraph"><![CDATA[History & Grafik]]></string>
     <string-array name="gender">
         <item>male</item>
         <item>female</item>
