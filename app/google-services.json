@@ -37,6 +37,35 @@
     },
     {
       "client_info": {
+        "mobilesdk_app_id": "1:91386084582:android:e1554d4b3ec9b669380f27",
+        "android_client_info": {
+          "package_name": "com.hypoxia.arduinoapps"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "91386084582-96s3b8n8khai3ejq0jq2csont28me7sc.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBOPSNST5IMbpnAI9kUj2HtxXxNUWo_eIA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "91386084582-96s3b8n8khai3ejq0jq2csont28me7sc.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
         "mobilesdk_app_id": "1:91386084582:android:f4df5b7572214e47380f27",
         "android_client_info": {
           "package_name": "com.project.arduinoapps"

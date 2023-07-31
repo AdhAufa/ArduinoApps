@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.arduinoapps">
+    package="com.hypoxia.arduinoapps">
 
     <uses-permission android:name="android.permission.INTERNET" />
 
@@ -14,18 +14,18 @@
         android:usesCleartextTraffic="true"
         >
         <activity
-            android:name=".activity.ProfileActivity"
+            android:name="com.hypoxia.arduinoapps.activity.ProfileActivity"
             android:exported="false" />
         <activity
-            android:name=".activity.RegisterActivity"
+            android:name="com.hypoxia.arduinoapps.activity.RegisterActivity"
             android:exported="false" />
         <activity
-            android:name=".activity.LoginActivity"
+            android:name="com.hypoxia.arduinoapps.activity.LoginActivity"
             android:exported="false" />
-        <activity android:name=".activity.DetailDisorderActivity" />
-        <activity android:name=".activity.DetailTipsActivity" />
+        <activity android:name="com.hypoxia.arduinoapps.activity.DetailDisorderActivity" />
+        <activity android:name="com.hypoxia.arduinoapps.activity.DetailTipsActivity" />
         <activity
-            android:name=".activity.SplashActivity"
+            android:name="com.hypoxia.arduinoapps.activity.SplashActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -33,7 +33,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".activity.MainActivity" />
+        <activity android:name="com.hypoxia.arduinoapps.activity.MainActivity" />
     </application>
 
 </manifest>
